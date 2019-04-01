@@ -3,4 +3,4 @@ export const formatCount = (todos) => {
     const formatted = count === 1 ? 'item' : 'items';
     return `${count} ${formatted} left`;
 };
-  
+

@@ -9,7 +9,7 @@ class ToDo extends Component {
         super(props);
         this.state = {
             toDos: [],
-            toDoInput:""
+            toDoInput: ""
         }
     }
 
@@ -27,7 +27,7 @@ class ToDo extends Component {
                 var toDoObj = { id: 1, completed: false, value: e.target.value }
             }
             toDos.push(toDoObj);
-            this.setState({ toDos,toDoInput:"" });
+            this.setState({ toDos, toDoInput: "" });
         }
     }
 
@@ -41,8 +41,8 @@ class ToDo extends Component {
         this.setState({ toDos });
     }
 
-    onInputChange=(e)=>{
-        this.setState({[e.target.name]:e.target.value});
+    onInputChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value });
     }
 
     removeTodo = (e, todoid) => {
@@ -52,7 +52,7 @@ class ToDo extends Component {
     }
 
     render() {
-        const { toDos ,toDoInput} = this.state;
+        const { toDos, toDoInput } = this.state;
         return (<>
             <div className="flexItem header">To-Do</div>
             <div className="flexItem"><input name="toDoInput" value={toDoInput} onChange={this.onInputChange} type="text" placeholder="New" onKeyPress={this.handleKeyPress} autoFocus /><span>+</span></div>
