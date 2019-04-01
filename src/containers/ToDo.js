@@ -1,4 +1,6 @@
 import React,{Component} from 'react';
+import Counter from '../components/ToDoCounter';
+import {formatCount} from '../utils';
 
 class ToDo extends Component {
     constructor(props) {
@@ -34,11 +36,9 @@ class ToDo extends Component {
     onChecked=(e,todoid)=>{
         const toDos =[...this.state.toDos];
         toDos.forEach((todo)=>{
-            if(todo.id===todoid&&e.target.checked)
-            todo.completed=true;
-            else
-            todo.completed=false;
-
+            if(todo.id===todoid){
+                todo.completed = !todo.completed;
+            }
         })
         this.setState({toDos});        
     }
@@ -49,12 +49,21 @@ class ToDo extends Component {
         this.setState({toDos});
     }
 
+    onMouseOver=()=>{
+
+    }
+
+    onMouseLeave=()=>{
+
+    }
+
     render() { 
         const {disabled,toDos} = this.state;
         return (<>
         To-Do 
         <div><input type="text" placeholder="New" onKeyPress={this.handleKeyPress} autoFocus/><button type="submit" onClick={this.onSubmit}>+</button></div>
-        {toDos.map((todo)=><ul><li>{todo.value} <button onClick={(e)=>this.removeTodo(e,todo.id)}>x</button><input type="checkbox" onChange={(e)=>this.onChecked(e,todo.id)}/></li></ul>)}
+        {toDos.map((todo)=><ul><li class={todo.completed?'strikethrough':''} onMouseEnter={this.onMouseOver} onMouseLeave={this.onMouseLeave}>{todo.value} <button onClick={(e)=>this.removeTodo(e,todo.id)}>x</button><input type="checkbox" onChange={(e)=>this.onChecked(e,todo.id)}/></li></ul>)}
+        <Counter count={formatCount(toDos)}/>
         </> );
     }
 }
