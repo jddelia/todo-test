@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -21,10 +21,32 @@
 
 .App-link {
   color: #61dafb;
+} */
+
+.App{
+  display:flex;
+  align-items:center;
+  flex-direction: column;
+  padding:1%;
+  text-align: center;
 }
 
 .strikethrough{
   text-decoration: line-through;
+}
+
+.toDoList{
+  list-style-type: none;
+}
+
+.flexItem{
+  padding:0.3%;
+  width:15%;
+}
+
+.header{
+  width:15%;
+  border: 2px solid black;
 }
 
 @keyframes App-logo-spin {

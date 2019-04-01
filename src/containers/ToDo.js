@@ -2,30 +2,21 @@ import React, { Component } from 'react';
 import Counter from '../components/ToDoCounter';
 import ToDoList from '../components/ToDoList';
 import { formatCount } from '../utils';
-import {ENTERKEYCODE} from '../constants';
+import { ENTERKEYCODE } from '../constants';
 
 class ToDo extends Component {
     constructor(props) {
         super(props);
         this.state = {
             toDos: [],
-            disabled: true
-        }
-    }
-
-    formValidation=(input)=>{
-        debugger;
-        if(!input.trim())
-        {
-            alert("Please Enter the ToDo Task")
-            return;
+            toDoInput:""
         }
     }
 
     handleKeyPress = (e) => {
         const toDos = [...this.state.toDos];
         if (e.charCode == ENTERKEYCODE) {
-            if(!e.target.value.trim()){
+            if (!e.target.value.trim()) {
                 alert("Please Enter the ToDo Task")
                 return;
             }
@@ -36,14 +27,8 @@ class ToDo extends Component {
                 var toDoObj = { id: 1, completed: false, value: e.target.value }
             }
             toDos.push(toDoObj);
-            this.setState({ toDos });
+            this.setState({ toDos,toDoInput:"" });
         }
-    }
-
-    onSubmit = (e) => {
-        e.preventDefault();
-        console.log(e.target.value);
-        this.setState({ disabled: false })
     }
 
     onChange = (e, todoid) => {
@@ -56,6 +41,10 @@ class ToDo extends Component {
         this.setState({ toDos });
     }
 
+    onInputChange=(e)=>{
+        this.setState({[e.target.name]:e.target.value});
+    }
+
     removeTodo = (e, todoid) => {
         const toDos = [...this.state.toDos];
         toDos.splice(toDos.findIndex((todo) => todo.id === todoid), 1);
@@ -63,13 +52,13 @@ class ToDo extends Component {
     }
 
     render() {
-        const { disabled, toDos } = this.state;
+        const { toDos ,toDoInput} = this.state;
         return (<>
-            To-Do
-        <div><input type="text" placeholder="New" onKeyPress={this.handleKeyPress} autoFocus /><button type="submit" onClick={this.onSubmit}>+</button></div>
-            {toDos.map((todo) => <ul>
-                <ToDoList todo={todo} onChange={this.onChange} removeTodo={this.removeTodo}/>
-                </ul>)}
+            <div className="flexItem header">To-Do</div>
+            <div className="flexItem"><input name="toDoInput" value={toDoInput} onChange={this.onInputChange} type="text" placeholder="New" onKeyPress={this.handleKeyPress} autoFocus /><span>+</span></div>
+            {toDos.map((todo) => <ul key={todo.id}>
+                <ToDoList todo={todo} onChange={this.onChange} removeTodo={this.removeTodo} />
+            </ul>)}
             <Counter count={formatCount(toDos)} />
         </>);
     }
