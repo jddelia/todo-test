@@ -68,10 +68,7 @@ class ToDo extends Component {
     const newToDos = toDos.filter(toDo => {
       return toDo.id !== todoId;
     });
-
-    console.log(newToDos);
     
-
     this.setState({ toDos: newToDos });
   }
 
