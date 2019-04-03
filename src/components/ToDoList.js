@@ -8,15 +8,15 @@ class ToDoList extends Component {
     this.onMouseLeave = this.onMouseLeave.bind(this);
     this.state = {
       hovering: false
-    }
+    };
   }
 
   onMouseOver = () => {
-    this.setState({ hovering: true })
+    this.setState({ hovering: true });
   }
 
   onMouseLeave = () => {
-    this.setState({ hovering: false })
+    this.setState({ hovering: false });
   }
 
   render() {

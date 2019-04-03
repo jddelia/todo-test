@@ -14,15 +14,15 @@ class ToDo extends Component {
     this.state = {
       toDos: [],
       toDoInput: ""
-    }
+    };
   }
 
   handleKeyPress = (e) => {
     const toDos = [...this.state.toDos];
-    if (e.charCode === ENTER_KEY_CODE) {
 
+    if (e.charCode === ENTER_KEY_CODE) {
       if (!e.target.value.trim()) {
-        alert("Please Enter the ToDo Task")
+        alert("Please Enter the ToDo Task");
         return;
       }
         
@@ -33,14 +33,13 @@ class ToDo extends Component {
           id: toDos[toDos.length - 1].id + this.state.toDoInput.length, 
           completed: false, 
           value: e.target.value 
-        }
-      }
-      else {
+        };
+      } else {
         toDoObj = { 
           id: 1, 
           completed: false, 
           value: e.target.value 
-        }
+        };
       }
 
       toDos.push(toDoObj);
@@ -50,11 +49,13 @@ class ToDo extends Component {
 
   onChange = (e, todoId) => {
     const toDos = [...this.state.toDos];
+
     toDos.forEach((todo) => {
       if (todo.id === todoId) {
         todo.completed = !todo.completed;
       }
-    })
+    });
+
     this.setState({ toDos });
   }
 
@@ -68,7 +69,7 @@ class ToDo extends Component {
     const newToDos = toDos.filter(toDo => {
       return toDo.id !== todoId;
     });
-    
+
     this.setState({ toDos: newToDos });
   }
 

@@ -13,4 +13,4 @@ export default ToDoCounter;
 
 ToDoCounter.propTypes = {
   count: PropTypes.string.isRequired
-}
+};
